@@ -1,0 +1,37 @@
+extends:
+  - airbnb-typescript/base
+  - 'plugin:@typescript-eslint/recommended'
+plugins:
+  - node
+  - import
+  - '@typescript-eslint/eslint-plugin'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  project: './tsconfig.json'
+  sourceType: module
+  ecmaVersion: 2020
+rules:
+  arrow-body-style: 0
+  max-len: [0, 150, 2]
+  prefer-arrow-callback: 0
+  import/extensions: 0
+  import/prefer-default-export: 0
+  lines-between-class-members: 0
+  no-underscore-dangle: 0
+  no-param-reassign: 0
+  '@typescript-eslint/interface-name-prefix': 0
+  '@typescript-eslint/explicit-function-return-type': 'off'
+  '@typescript-eslint/no-inferrable-types':
+    - 'warn'
+    - ignoreParameters: true
+settings:
+  import/resolver:
+    node:
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts']
+globals:
+  __: true
+env:
+  node: true
+  browser: true
+  jest: true
+  es6: true

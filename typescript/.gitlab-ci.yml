@@ -1,0 +1,11 @@
+image: payly/node-gitlab-ci:latest
+
+stages:
+  - test
+  - sonarqube
+  # - build
+  # - push
+  # - deploy
+
+include:
+  - local: './scripts/test.yaml'

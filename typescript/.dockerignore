@@ -1,0 +1,12 @@
+test
+.vscode
+scripts
+docs
+
+.editorconfig
+.env.sample
+.eslintrc.yml
+.gitignore
+.gitlab-ci.yml
+nodemon.json
+README.md
