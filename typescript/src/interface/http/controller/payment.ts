@@ -1,6 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import httpStatus from 'http-status-codes';
 
+import { postPayment } from '../schema/payment';
+import { Logger } from '../../../util/logger';
+
 import {
   HttpRouter,
   HttpNext,
@@ -8,7 +11,6 @@ import {
   HttpResponse,
   IHttpRoute,
 } from '../../../types/interface';
-import { postPayment } from '../schema/payment';
 
 export class PaymentController implements IHttpRoute {
   private _validator: Function;
@@ -24,6 +26,8 @@ export class PaymentController implements IHttpRoute {
         this._validator(postPayment),
         this.postPayment.bind(this),
       );
+
+    Logger.debug('fun: PaymentController.register end');
   }
 
   async postPayment(req: HttpRequest, res: HttpResponse, next: HttpNext) {

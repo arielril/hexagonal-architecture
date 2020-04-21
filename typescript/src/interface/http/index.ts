@@ -7,7 +7,7 @@ import express from 'express';
 import { PaymentController } from './controller/payment';
 import { validator } from './middleware/validator';
 import { errorHandler } from './middleware/errorHandler';
-import { ExpressLogger } from '../../util/logger';
+import { ExpressLogger, Logger } from '../../util/logger';
 
 import { Container } from '../../types/core';
 import { IHttpRoute, IHttpInterface } from '../../types/interface';
@@ -23,11 +23,18 @@ export class HttpInterface implements IHttpInterface {
   private env: Config['env'];
 
   constructor(config: Config) {
+    Logger.debug({
+      coreContainer: config.coreContainer !== undefined,
+      env: config.env !== undefined,
+    }, 'fun: HttpInterface.constructor');
+
     this.coreContainer = config.coreContainer;
     this.env = config.env;
   }
 
   initApp() {
+    Logger.debug('fun: HttpInterface.initApp');
+
     this.app = express();
 
     this.app.use(
@@ -40,9 +47,16 @@ export class HttpInterface implements IHttpInterface {
       ExpressLogger.onSuccess.bind(ExpressLogger),
       ExpressLogger.onError.bind(ExpressLogger),
     );
+
+    this.setupRoutes();
+    this.setupNotFound();
+
+    this.app.use(errorHandler);
   }
 
   setupRoutes() {
+    Logger.debug('fun: HttpInterface.setupRoutes');
+
     [
       new PaymentController({
         coreContainer: this.coreContainer,
@@ -54,9 +68,13 @@ export class HttpInterface implements IHttpInterface {
         route.register(router);
         this.app?.use(router);
       });
+
+    Logger.debug('fun: HttpInterface.setupRoutes end');
   }
 
   setupNotFound() {
+    Logger.debug('fun: HttpInterface.setupNotFound');
+
     this.app?.use(
       '*',
       (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -66,12 +84,14 @@ export class HttpInterface implements IHttpInterface {
   }
 
   serve(): void {
+    Logger.debug('fun: HttpInterface.serve');
+
     this.initApp();
-    this.setupRoutes();
 
-    this.setupNotFound();
-
-    this.app?.use(errorHandler);
     this.app?.listen(this.env.httpPort);
+
+    Logger.info({
+      httpPort: this.env.httpPort,
+    }, 'http interface listening');
   }
 }

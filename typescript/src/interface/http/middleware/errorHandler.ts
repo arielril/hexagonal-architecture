@@ -1,23 +1,25 @@
 import httpStatusCodes from 'http-status-codes';
 
-import { HttpRequest, HttpResponse } from '../../../types/interface';
-// import { Logger as logger } from '../../../logger';
+import { Logger } from '../../../util/logger';
+
+import { HttpRequest, HttpResponse, HttpNext } from '../../../types/interface';
 
 export const errorHandler = (
   err: any,
   req: HttpRequest,
   res: HttpResponse,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: HttpNext,
 ) => {
   const status = httpStatusCodes.INTERNAL_SERVER_ERROR;
   const throwErr: Error = new Error(err.message);
 
-  // if (status !== httpStatusCodes.INTERNAL_SERVER_ERROR) {
-  //   logger.warn(err);
-  // } else {
-  //   logger.error(err);
-  // }
+  Logger.error(err);
 
   return res
     .status(status)
-    .send(throwErr);
+    .send({
+      name: throwErr.name,
+      message: throwErr.message,
+    });
 };

@@ -1,6 +1,6 @@
 import knex from 'knex';
 
-import knexfile = require('../../knexfile');
+import knexfile from '../../knexfile';
 
 let db: knex;
 export default function getDbConn(): knex {

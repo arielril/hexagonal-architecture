@@ -1,9 +1,9 @@
-import env from './src/util/env';
+import knex from 'knex';
 
-/**
- * @type {import('knex').Config}
- */
-module.exports = {
+import env from './src/util/env';
+import { Logger } from './src/util/logger';
+
+export default {
   client: 'mysql2',
   debug: env.mysqlDebug || false,
   connection: {
@@ -20,16 +20,16 @@ module.exports = {
   pool: {
     min: env.mysqlPoolMin,
     max: env.mysqlPoolMax,
-    // @ts-ignore
-    afterCreate: function _(connection, done) {
-      // @ts-ignore
-      // tslint:disable-next-line: ter-prefer-arrow-callback
-      connection.query('SET time_zone = "UTC";', function er(err) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    afterCreate: function _(connection: any, done: Function) {
+      connection.query('SET time_zone = "UTC";', function er(err: Error) {
+        if (err) {
+          Logger.error(err, 'failed to initialize mysql database connection');
+        } else {
+          Logger.debug({}, 'mysql database connected');
+        }
         done(err, connection);
       });
     },
   },
-  migrations: {
-    tableName: 'migrations',
-  },
-};
+} as knex.Config;
