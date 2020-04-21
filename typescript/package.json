@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "pm2-runtime start ./configs/process.yaml",
-    "dev": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/index.ts",
+    "dev": "nodemon ./src/index.ts",
     "build": "rm -rf dist && tsc",
     "test": "jest \\.test\\.ts",
     "test:unit": "jest \\.unit\\.test\\.ts --silent",
@@ -22,7 +22,6 @@
     "url": "https://github.com/arielril"
   },
   "dependencies": {
-    "@4alltecnologia/http-errors": "^1.1.0",
     "@hapi/joi": "^16.1.8",
     "@somosphi/logger": "^1.2.10",
     "axios": "^0.19.0",
@@ -36,9 +35,9 @@
     "http-status-codes": "^1.4.0",
     "knex": "^0.20.11",
     "moment-timezone": "^0.5.28",
-    "mysql2": "^2.0.1",
-    "nodemon": "^2.0.2",
-    "ramda": "^0.26.1"
+    "mysql2": "^2.1.0",
+    "ramda": "^0.26.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@types/amqplib": "^0.5.13",
@@ -64,6 +63,7 @@
     "jest": "^24.9.0",
     "jest-express": "^1.11.3",
     "nock": "^11.9.1",
+    "nodemon": "^2.0.3",
     "sinon": "^7.3.2",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.0",

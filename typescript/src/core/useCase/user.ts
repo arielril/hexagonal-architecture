@@ -1,4 +1,7 @@
-import { IUserUseCase } from '../../types/user';
+import * as R from 'ramda';
+import joi from '@hapi/joi';
+
+import { IUserUseCase, User } from '../../types/user';
 import { UseCaseContext } from '../../types/core';
 
 export class UserUseCase implements IUserUseCase {
@@ -8,9 +11,26 @@ export class UserUseCase implements IUserUseCase {
     this.userService = ctx.userService;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  createBasicUser(props: any) {
-    throw new Error('Method not implemented.');
+  async createBasicUser(props: Partial<User>) {
+    const schemaValidation = joi.object({
+      email: joi.string().email(),
+      fullName: joi.string().regex(/\w (\w+ )+/),
+    });
+
+    const er = schemaValidation.validate(props);
+
+    if (er.errors) {
+      throw new Error('Invalid properties to create an user');
+    }
+
+    const user = {
+      email: props.email,
+      fullName: props.fullName,
+    };
+
+    const userId = await this.userService.createUser(user);
+
+    return R.assoc('id', userId, user) as User;
   }
 
   // eslint-disable-next-line class-methods-use-this

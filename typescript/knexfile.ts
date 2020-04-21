@@ -1,9 +1,7 @@
-import knex from 'knex';
-
 import env from './src/util/env';
 import { Logger } from './src/util/logger';
 
-export default {
+const config = {
   client: 'mysql2',
   debug: env.mysqlDebug || false,
   connection: {
@@ -24,12 +22,14 @@ export default {
     afterCreate: function _(connection: any, done: Function) {
       connection.query('SET time_zone = "UTC";', function er(err: Error) {
         if (err) {
-          Logger.error(err, 'failed to initialize mysql database connection');
+          Logger.warn(err, 'failed to initialize mysql database connection');
         } else {
-          Logger.debug({}, 'mysql database connected');
+          Logger.debug('mysql database connected');
         }
         done(err, connection);
       });
     },
   },
-} as knex.Config;
+};
+
+export default config;

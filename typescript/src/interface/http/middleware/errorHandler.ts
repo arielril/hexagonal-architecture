@@ -5,7 +5,7 @@ import { Logger } from '../../../util/logger';
 import { HttpRequest, HttpResponse, HttpNext } from '../../../types/interface';
 
 export const errorHandler = (
-  err: any,
+  err: Error,
   req: HttpRequest,
   res: HttpResponse,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

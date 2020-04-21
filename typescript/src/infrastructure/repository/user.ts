@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import { v4 as uuid } from 'uuid';
 
 import { IUserRepository, User } from '../../types/user';
 import { IMysqlAdapter } from '../../types/infrastructure';
@@ -16,7 +17,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async createUser(user: Partial<User>): Promise<User['id']> {
-    const userId = '1231231';
+    const userId = uuid();
     const __user__ = R.assoc('id', userId, user);
 
     return this.mysqlAdapter

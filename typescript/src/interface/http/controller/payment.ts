@@ -10,12 +10,13 @@ import {
   HttpRequest,
   HttpResponse,
   IHttpRoute,
+  HttpControllerConfig,
 } from '../../../types/interface';
 
 export class PaymentController implements IHttpRoute {
-  private _validator: Function;
+  private _validator: HttpControllerConfig['validator'];
 
-  constructor({ validator }: any) {
+  constructor({ validator }: HttpControllerConfig) {
     this._validator = validator;
   }
 

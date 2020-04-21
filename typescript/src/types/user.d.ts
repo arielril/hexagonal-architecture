@@ -1,5 +1,7 @@
 export type User = {
   id: string;
+  email: string;
+  fullName: string;
 };
 
 export interface IUserRepository {
@@ -15,6 +17,6 @@ export interface IUserService {
 }
 
 export interface IUserUseCase {
-  createBasicUser(props: any): any;
+  createBasicUser(props: Partial<User>): Promise<User>;
   createUserAndSendNotificationEmail(props: any): any;
 }
