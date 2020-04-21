@@ -10,18 +10,19 @@ import { errorHandler } from './middleware/errorHandler';
 import { ExpressLogger } from '../../util/logger';
 
 import { Container } from '../../types/core';
-import { IHttpRoute } from '../../types/interface';
+import { IHttpRoute, IHttpInterface } from '../../types/interface';
 
-interface IHttpInterface {
-  serve(): void;
-}
+type Config = {
+  env: typeof import('../../util/env').default;
+  coreContainer: Container;
+};
 
 export class HttpInterface implements IHttpInterface {
   private app?: express.Application;
-  private coreContainer: Container;
-  private env: any;
+  private coreContainer: Config['coreContainer'];
+  private env: Config['env'];
 
-  constructor(config: any) {
+  constructor(config: Config) {
     this.coreContainer = config.coreContainer;
     this.env = config.env;
   }
@@ -34,7 +35,7 @@ export class HttpInterface implements IHttpInterface {
       cors(),
       compression(),
       bodyParser.json({
-        limit: this.env.bodyLimit,
+        limit: this.env.httpBodyLimit,
       }),
       ExpressLogger.onSuccess.bind(ExpressLogger),
       ExpressLogger.onError.bind(ExpressLogger),

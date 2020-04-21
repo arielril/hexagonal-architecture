@@ -28,7 +28,7 @@ export type Container = {
 };
 
 export type ContainerConfig = {
-  paymentProcessorUrl: string;
+  paymentProcessorUrl?: string;
 };
 
 export type MysqlAdapterConfig = {

@@ -1,25 +1,25 @@
-import { env } from './src/env';
+import env from './src/util/env';
 
 /**
  * @type {import('knex').Config}
  */
 module.exports = {
   client: 'mysql2',
-  debug: env.dbDebug || false,
+  debug: env.mysqlDebug || false,
   connection: {
-    host: env.dbHost,
-    port: env.dbPort,
-    user: env.dbUsername,
-    password: env.dbPassword,
-    database: env.dbDatabase,
+    host: env.mysqlHost,
+    port: env.mysqlPort,
+    user: env.mysqlUser,
+    password: env.mysqlPassword,
+    database: env.mysqlSchema,
     supportBigNumbers: true,
     bigNumberStrings: true,
     multipleStatements: true,
     dateStrings: true,
   },
   pool: {
-    min: env.dbPoolMin,
-    max: env.dbPoolMax,
+    min: env.mysqlPoolMin,
+    max: env.mysqlPoolMax,
     // @ts-ignore
     afterCreate: function _(connection, done) {
       // @ts-ignore
