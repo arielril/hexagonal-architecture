@@ -1,9 +1,10 @@
-import { IUserService } from './user';
-import { IPaymentService } from './payment';
+import { IUserService, IUserUseCase } from './user';
+import { IPaymentService, IPaymentUseCase } from './payment';
 import { Container as infraContainer } from './infrastructure';
 
 export type Container = {
-  paymentUseCase: any;
+  paymentUseCase: IPaymentUseCase;
+  userUseCase: IUserUseCase;
 };
 
 export type ContainerConfig = {

@@ -1,7 +1,7 @@
 import env from './src/util/env';
 import { Logger } from './src/util/logger';
 
-const config = {
+module.exports = {
   client: 'mysql2',
   debug: env.mysqlDebug || false,
   connection: {
@@ -31,5 +31,3 @@ const config = {
     },
   },
 };
-
-export default config;

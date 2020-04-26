@@ -4,7 +4,7 @@ import {
 } from '../../types/user';
 import { ServiceContext } from '../../types/core';
 
-export class UserSevice implements IUserService {
+export class UserService implements IUserService {
   private userRepository: ServiceContext['userRepository'];
 
   constructor(ctx: ServiceContext) {

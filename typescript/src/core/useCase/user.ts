@@ -3,6 +3,7 @@ import joi from '@hapi/joi';
 
 import { IUserUseCase, User } from '../../types/user';
 import { UseCaseContext } from '../../types/core';
+import { Logger } from '../../util/logger';
 
 export class UserUseCase implements IUserUseCase {
   private userService: UseCaseContext['userService'];
@@ -14,12 +15,20 @@ export class UserUseCase implements IUserUseCase {
   async createBasicUser(props: Partial<User>) {
     const schemaValidation = joi.object({
       email: joi.string().email(),
-      fullName: joi.string().regex(/\w (\w+ )+/),
+      fullName: joi.string().regex(/\w+ (\w+ *)+/),
     });
 
-    const er = schemaValidation.validate(props);
+    const er = schemaValidation.validate(props, {
+      stripUnknown: true,
+      abortEarly: false,
+    });
 
-    if (er.errors) {
+    if (er.error) {
+      Logger.debug({
+        details: er.error.details,
+        class: 'UserUseCase',
+        classType: 'UseCse',
+      }, 'invalid properties to create an user');
       throw new Error('Invalid properties to create an user');
     }
 

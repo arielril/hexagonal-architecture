@@ -11,6 +11,7 @@ import { ExpressLogger, Logger } from '../../util/logger';
 
 import { Container } from '../../types/core';
 import { IHttpRoute, IHttpInterface } from '../../types/interface';
+import { UserController } from './controller/user';
 
 type Config = {
   env: typeof import('../../util/env').default;
@@ -59,6 +60,10 @@ export class HttpInterface implements IHttpInterface {
 
     [
       new PaymentController({
+        coreContainer: this.coreContainer,
+        validator,
+      }),
+      new UserController({
         coreContainer: this.coreContainer,
         validator,
       }),
