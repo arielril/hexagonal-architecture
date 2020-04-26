@@ -33,9 +33,16 @@ export class HttpInterface implements IHttpInterface {
     this.env = config.env;
   }
 
-  initApp() {
-    Logger.debug('fun: HttpInterface.initApp');
+  // eslint-disable-next-line class-methods-use-this
+  private _debug(info: object = {}, msg: string = '') {
+    Logger.debug({
+      class: 'HttpInterface',
+      classType: 'Interface',
+      ...info,
+    }, msg);
+  }
 
+  initApp() {
     this.app = express();
 
     this.app.use(
@@ -56,8 +63,6 @@ export class HttpInterface implements IHttpInterface {
   }
 
   setupRoutes() {
-    Logger.debug('fun: HttpInterface.setupRoutes');
-
     [
       new PaymentController({
         coreContainer: this.coreContainer,
@@ -74,12 +79,10 @@ export class HttpInterface implements IHttpInterface {
         this.app?.use(router);
       });
 
-    Logger.debug('fun: HttpInterface.setupRoutes end');
+    this._debug({}, 'setupRoutes ended');
   }
 
   setupNotFound() {
-    Logger.debug('fun: HttpInterface.setupNotFound');
-
     this.app?.use(
       '*',
       (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -89,8 +92,6 @@ export class HttpInterface implements IHttpInterface {
   }
 
   serve(): void {
-    Logger.debug('fun: HttpInterface.serve');
-
     this.initApp();
 
     this.app?.listen(this.env.httpPort);
@@ -98,5 +99,6 @@ export class HttpInterface implements IHttpInterface {
     Logger.info({
       httpPort: this.env.httpPort,
     }, 'http interface listening');
+    this._debug({}, 'initialized http interface');
   }
 }

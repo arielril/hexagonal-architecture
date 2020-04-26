@@ -14,7 +14,11 @@ export const validator = curryN(
     });
 
     if (validation.error) {
-      Logger.debug({ details: validation.error.details, http: true }, 'invalid request params');
+      Logger.debug({
+        class: 'Validator',
+        classType: 'HttpMiddleware',
+        details: validation.error.details,
+      }, 'invalid request params');
       return next(new Error('Invalid request params'));
     }
 

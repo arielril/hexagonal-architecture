@@ -29,7 +29,10 @@ export class UserController implements IHttpRoute {
         this.postUser.bind(this),
       );
 
-    Logger.debug('fun: UserController.register end');
+    Logger.debug({
+      class: 'UserController',
+      classType: 'HttpController',
+    }, 'route registration ended');
   }
 
   async postUser(req: HttpRequest, res: HttpResponse, next: HttpNext) {
