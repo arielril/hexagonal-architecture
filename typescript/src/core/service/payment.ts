@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { ServiceContext } from '../../types/core';
 import { IPaymentService, Payment } from '../../types/payment';
 
@@ -8,18 +9,15 @@ export class PaymentService implements IPaymentService {
     this.paymentRepository = ctx.paymentRepository;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  authorize() {
+  authorize(): object {
     throw new Error('Method not implemented.');
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  capture() {
+  capture(): object {
     throw new Error('Method not implemented.');
   }
 
-  // eslint-disable-next-line class-methods-use-this
   findById(id: string): Payment {
-    throw new Error('Method not implemented.');
+    throw new Error(`Method not implemented. ${id}`);
   }
 }

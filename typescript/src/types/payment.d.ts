@@ -3,13 +3,13 @@ export type Payment = {
 };
 
 export interface IPaymentService {
-  authorize(): any;
-  capture(): any;
+  authorize(): object;
+  capture(): object;
   findById(id: Payment['id']): Payment;
 }
 
 export interface IPaymentRepository {
-  authorize(params: any): void;
+  authorize(params: object): void;
   capture(): void;
   authorizeAndCapture(): void;
   find(): void;
@@ -17,6 +17,6 @@ export interface IPaymentRepository {
 }
 
 export interface IPaymentUseCase {
-  authorizeCreditCardPayment(props: any): any;
-  authorizeAndCaptureCreditCardPayment(props: any): any;
+  authorizeCreditCardPayment(props: object): object;
+  authorizeAndCaptureCreditCardPayment(props: object): object;
 }

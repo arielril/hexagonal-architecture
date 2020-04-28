@@ -9,12 +9,12 @@ export class PaymentUseCase implements IPaymentUseCase {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  authorizeCreditCardPayment(props: any) {
-    throw new Error('Method not implemented.');
+  authorizeCreditCardPayment(props: object): object {
+    throw new Error(`Method not implemented.${props}`);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  authorizeAndCaptureCreditCardPayment(props: any) {
-    throw new Error('Method not implemented.');
+  authorizeAndCaptureCreditCardPayment(props: object): object {
+    throw new Error(`Method not implemented.${props}`);
   }
 }

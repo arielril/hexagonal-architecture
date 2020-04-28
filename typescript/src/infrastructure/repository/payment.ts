@@ -24,8 +24,8 @@ export class PaymentRepository implements IPaymentRepository {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private createAuthorizeRequestConfig(params: any) {
-    return {};
+  private createAuthorizeRequestConfig(params: object = {}) {
+    return { ...params };
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -34,7 +34,7 @@ export class PaymentRepository implements IPaymentRepository {
   // eslint-disable-next-line class-methods-use-this
   private rejectAuthorizeResponse() { return {}; }
 
-  authorize(params: any): Promise<any> {
+  authorize(params: object): Promise<object> {
     const config = this.createAuthorizeRequestConfig(params);
 
     return this.httpAdapter

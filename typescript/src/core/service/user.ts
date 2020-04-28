@@ -26,7 +26,7 @@ export class UserService implements IUserService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  findUsersByParams(params: any): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  findUsersByParams(params: object): Promise<User[]> {
+    throw new Error(`Method not implemented.${params}`);
   }
 }

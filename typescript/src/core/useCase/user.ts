@@ -43,7 +43,7 @@ export class UserUseCase implements IUserUseCase {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  createUserAndSendNotificationEmail(props: any) {
-    throw new Error('Method not implemented.');
+  createUserAndSendNotificationEmail(props: object): object {
+    throw new Error(`Method not implemented.${props}`);
   }
 }

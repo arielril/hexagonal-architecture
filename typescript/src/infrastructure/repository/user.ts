@@ -27,12 +27,12 @@ export class UserRepository implements IUserRepository {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async findUser(params: any): Promise<User[]> {
-    return [];
+  async findUser(params: object): Promise<User[]> {
+    return [params as User];
   }
 
   // eslint-disable-next-line class-methods-use-this
-  updateUser(params: any): void {
-    throw new Error('Method not implemented.');
+  updateUser(params: object): void {
+    throw new Error(`Method not implemented.${params}`);
   }
 }
