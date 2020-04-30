@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { v4 as uuid } from 'uuid';
 
-import { IUserRepository, User } from '../../types/user';
+import { IUserRepository, User, FindUserParam } from '../../types/user';
 import { IMysqlAdapter } from '../../types/infrastructure';
 
 type Context = {
@@ -26,13 +26,11 @@ export class UserRepository implements IUserRepository {
       .then(() => userId);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  async findUser(params: object): Promise<User[]> {
-    return [params as User];
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  updateUser(params: object): void {
-    throw new Error(`Method not implemented.${params}`);
+  async findUser(params: FindUserParam): Promise<User[]> {
+    return this.mysqlAdapter
+      .db
+      .where({
+        id: params?.where?.id,
+      });
   }
 }

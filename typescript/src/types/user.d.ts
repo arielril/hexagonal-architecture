@@ -4,19 +4,24 @@ export type User = {
   fullName: string;
 };
 
+export type FindUserParam = {
+  where: {
+    id?: User['id'];
+  };
+};
+
 export interface IUserRepository {
   createUser(user: Partial<User>): Promise<User['id']>;
-  findUser(params: object): Promise<User[]>;
-  updateUser(params: object): void;
+  findUser(params: FindUserParam): Promise<User[]>;
 }
 
 export interface IUserService {
   createUser(user: Partial<User>): Promise<User['id']>;
   findUserById(id: User['id']): Promise<User>;
-  findUsersByParams(params: object): Promise<User[]>;
+  findUsersByParams(params: FindUserParam): Promise<User[]>;
 }
 
 export interface IUserUseCase {
   createBasicUser(props: Partial<User>): Promise<User>;
-  createUserAndSendNotificationEmail(props: object): object;
+  findUserById(userId: User['id']): Promise<User>;
 }

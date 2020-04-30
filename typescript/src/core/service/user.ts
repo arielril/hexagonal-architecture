@@ -11,7 +11,7 @@ export class UserService implements IUserService {
     this.userRepository = ctx.userRepository;
   }
 
-  createUser(user: Partial<User>): Promise<string> {
+  createUser(user: Partial<User>): Promise<User['id']> {
     return this.userRepository.createUser(user);
   }
 

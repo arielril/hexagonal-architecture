@@ -42,8 +42,11 @@ export class UserUseCase implements IUserUseCase {
     return R.assoc('id', userId, user) as User;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  createUserAndSendNotificationEmail(props: object): object {
-    throw new Error(`Method not implemented.${props}`);
+  async findUserById(userId: User['id']): Promise<User> {
+    if (!userId || typeof userId !== 'string') {
+      throw new Error('invalid user id to search');
+    }
+
+    return this.userService.findUserById(userId);
   }
 }

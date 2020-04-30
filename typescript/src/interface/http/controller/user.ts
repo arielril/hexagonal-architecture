@@ -49,4 +49,16 @@ export class UserController implements IHttpRoute {
       next(error);
     }
   }
+
+  async findUserById(req: HttpRequest, res: HttpResponse, next: HttpNext) {
+    try {
+      const userId = req.params.id;
+
+      const user = await this.userUseCase.findUserById(userId);
+
+      res.status(httpStatus.OK).send(user);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
