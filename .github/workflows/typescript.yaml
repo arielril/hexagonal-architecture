@@ -65,6 +65,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: typescript-dist
+          path: ./typescript/dist
       - name: Checkout
         uses: actions/checkout@v2
       - name: deploy heroku
