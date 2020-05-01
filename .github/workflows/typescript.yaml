@@ -54,5 +54,5 @@ jobs:
       - name: upload build
         uses: actions/upload-artifact@v1
         with:
-          name: dist
-          path: ./dist
+          name: typescript-dist
+          path: ./typescript/dist
