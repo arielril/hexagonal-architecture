@@ -68,11 +68,15 @@ jobs:
           path: ./typescript/dist
       - name: Checkout
         uses: actions/checkout@v2
-      - name: deploy heroku
-        id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0
-        with:
-          email: ${{ secrets.HEROKU_EMAIL }}
-          api_key: ${{ secrets.HEROKU_API_KEY }}
-          app_name: ${{ secrets.HEROKU_APP_NAME }}-typescript
-          dockerfile: ./typescript
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }}-typescript web
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }}-typescript web
