@@ -10,12 +10,12 @@
     "declaration": true
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/**/*.ts",
     "src/**/**/*.d.ts",
-    "migrations/*.ts"
+    "migrations/*.ts",
+    "configs/jest.config.ts"
   ],
   "exclude": [
-    "/__tests__/*",
     "dist",
     "node_modules"
   ]
