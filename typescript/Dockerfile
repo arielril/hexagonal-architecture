@@ -8,6 +8,8 @@ WORKDIR /opt/app/
 
 COPY . .
 
+RUN npm install --production
+
 EXPOSE ${SERVER_PORT}
 
 CMD npm start
