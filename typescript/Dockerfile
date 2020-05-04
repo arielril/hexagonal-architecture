@@ -8,9 +8,6 @@ WORKDIR /opt/app/
 
 COPY . .
 
-RUN npm install
-RUN npm run build
-
-EXPOSE 3000
+EXPOSE ${SERVER_PORT}
 
 CMD npm start

@@ -49,7 +49,7 @@ jobs:
       - name: Build
         run: |
           cd typescript
-          npm ci
+          npm i
           npm run build
       - name: upload build
         uses: actions/upload-artifact@v1
@@ -66,17 +66,21 @@ jobs:
         with:
           name: typescript-dist
           path: ./typescript/dist
-      - name: Go to Typescript folder
-        run: cd ./typescript
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
+        run: |
+          cd typescript 
+          heroku container:login
       - name: Build and push
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }}-typescript web
+        run: |
+          cd typescript 
+          heroku container:push -a ${{ secrets.HEROKU_APP_NAME }}-typescript --arg SERVER_PORT=${{ secrets.SERVER_PORT }} web
       - name: Release
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }}-typescript web
+        run: |
+          cd typescript 
+          heroku container:release -a ${{ secrets.HEROKU_APP_NAME }}-typescript web
