@@ -11,6 +11,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-EXPOSE ${SERVICEPORT}
+EXPOSE 3000
 
 CMD npm start

@@ -65,8 +65,8 @@ jobs:
         with:
           name: typescript-dist
           path: ./typescript/dist
-      - name: Go to dist folder
-        run: cd ./typescript/dist
+      - name: Go to Typescript folder
+        run: cd ./typescript
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
