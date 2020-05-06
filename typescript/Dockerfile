@@ -12,4 +12,4 @@ RUN npm install --production
 
 EXPOSE ${SERVER_PORT}
 
-CMD npm start
+CMD npm run migrate:up &&  npm start
