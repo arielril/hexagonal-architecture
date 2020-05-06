@@ -1,5 +1,4 @@
 apps:
   - script: 'dist/src/index.js'
-    name: 'Seed'
     exec_mode: 'cluster'
     instances: 1

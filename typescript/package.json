@@ -4,7 +4,8 @@
   "description": "Hexagonal typescript project",
   "main": "dist/index.js",
   "scripts": {
-    "start": "pm2-runtime start ./configs/process.yaml",
+    "start": "node dist/src/index.js",
+    "start:pm2": "pm2-runtime start ./configs/process.yaml",
     "dev": "nodemon ./src/index.ts",
     "build": "rm -rf dist && tsc",
     "test": "jest \\.test\\.ts",
