@@ -20,7 +20,6 @@ const config: Options.Connect = {
   vhost: env.amqpVhost,
 };
 
-
 let connection: Connection;
 const _getConnection = async () => {
   if (!connection) {

@@ -13,6 +13,8 @@ export type FindUserParam = {
 export interface IUserRepository {
   createUser(user: Partial<User>): Promise<User['id']>;
   findUser(params: FindUserParam): Promise<User[]>;
+  registerUserCreated(user: Partial<User>): Promise<boolean>;
+  registerUserUpdated(user: Partial<User>): Promise<boolean>;
 }
 
 export interface IUserService {

@@ -99,6 +99,6 @@ export class HttpInterface implements IHttpInterface {
     Logger.info({
       httpPort: this.env.httpPort,
     }, 'http interface listening');
-    this._debug({}, 'initialized http interface');
+    this._debug({}, 'http interface initialized');
   }
 }

@@ -5,6 +5,7 @@ plugins:
   - node
   - import
   - '@typescript-eslint/eslint-plugin'
+  - jest
 parser: '@typescript-eslint/parser'
 parserOptions:
   project: './tsconfig.json'

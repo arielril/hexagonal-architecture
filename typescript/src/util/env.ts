@@ -6,7 +6,6 @@ const env = {
   /* Http Interface Config */
   httpPort: parseInt(process.env.HTTP_PORT || '', 10),
   httpBodyLimit: process.env.HTTP_BODY_LIMIT,
-  httpActive: true || process.env.HTTP_ACTIVE === 'true',
 
   /* Mysql Adapter Config */
   mysqlPort: parseInt(process.env.MYSQL_PORT || '', 10),
@@ -27,6 +26,8 @@ const env = {
   amqpVhost: process.env.AMQP_VHOST,
 
   /* Application Config */
+  httpActive: process.env.HTTP_ACTIVE === 'true',
+  amqpActive: process.env.AMQP_ACTIVE === 'true',
   paymentProcessorUrl: process.env.PAYMENT_PROCESSOR_URL,
 };
 

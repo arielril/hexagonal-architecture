@@ -4,6 +4,8 @@ import joi from '@hapi/joi';
 import { UserRepository } from '../user';
 import { MysqlAdapter } from '../../adapter/mysql';
 
+import { MessageBusAdapter } from '../../adapter/messageBus';
+
 import { MysqlDatabase } from '../../../types/infrastructure';
 
 const chance = new Chance();
@@ -14,7 +16,10 @@ describe('user repository', () => {
       const mysqlAdapter = new MysqlAdapter({
         dbConn: jest.fn() as unknown as MysqlDatabase,
       });
-      const u = new UserRepository({ mysqlAdapter });
+      const u = new UserRepository({
+        mysqlAdapter,
+        messageBusAdapter: MessageBusAdapter,
+      });
 
       expect(u).toBeDefined();
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -33,7 +38,10 @@ describe('user repository', () => {
         };
       }) as unknown as MysqlDatabase;
       const mysqlAdapter = new MysqlAdapter({ dbConn });
-      const u = new UserRepository({ mysqlAdapter });
+      const u = new UserRepository({
+        mysqlAdapter,
+        messageBusAdapter: MessageBusAdapter,
+      });
 
       const goodUser = {
         email: chance.email(),
@@ -54,7 +62,10 @@ describe('user repository', () => {
         };
       }) as unknown as MysqlDatabase;
       const mysqlAdapter = new MysqlAdapter({ dbConn });
-      const u = new UserRepository({ mysqlAdapter });
+      const u = new UserRepository({
+        mysqlAdapter,
+        messageBusAdapter: MessageBusAdapter,
+      });
 
       const goodUser = {
         email: chance.email(),

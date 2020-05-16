@@ -1,4 +1,5 @@
 import knex from 'knex';
+import { Channel } from 'amqplib';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { IPaymentRepository } from './payment';
@@ -14,14 +15,44 @@ export interface IHttpAdapter {
 }
 
 /* MySQL Adapter */
-
 export type MysqlDatabase = knex;
+
+export type MysqlAdapterConfig = {
+  dbConn: MysqlDatabase;
+};
 
 export interface IMysqlAdapter {
   db: knex.QueryBuilder;
   tableName: string;
 }
 
+/* Message Bus Adapter */
+export type MessageBus = Channel;
+export type MessageContent = unknown;
+
+export interface IMessageBusAdapterConstructs {
+  new(config?: MessageBusAdapterConfig): IMessageBusAdapter;
+}
+
+export enum MessageBusType {
+  noConfirmation = 0,
+  withConfirmation = 1,
+}
+
+export type MessageBusAdapterConfig = {
+  messageBusType: MessageBusType;
+};
+
+export interface IMessageBusAdapter {
+  publish(
+    router: string,
+    routingKey: string,
+    content: MessageContent,
+    options?: any,
+  ): Promise<boolean>;
+}
+
+/* Infrastructure */
 export type Container = {
   paymentRepository: IPaymentRepository;
   userRepository: IUserRepository;
@@ -29,8 +60,4 @@ export type Container = {
 
 export type ContainerConfig = {
   paymentProcessorUrl?: string;
-};
-
-export type MysqlAdapterConfig = {
-  dbConn: MysqlDatabase;
 };

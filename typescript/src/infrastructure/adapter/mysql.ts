@@ -1,15 +1,17 @@
+import database from '../../util/knex';
+
 import {
   MysqlDatabase,
-  MysqlAdapterConfig,
   IMysqlAdapter,
+  MysqlAdapterConfig,
 } from '../../types/infrastructure';
 
 export class MysqlAdapter implements IMysqlAdapter {
   private _tbName: string;
   private database: MysqlDatabase;
 
-  constructor({ dbConn }: MysqlAdapterConfig) {
-    this.database = dbConn;
+  constructor(config?: MysqlAdapterConfig) {
+    this.database = config?.dbConn || database();
     this._tbName = '';
   }
 
