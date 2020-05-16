@@ -1,4 +1,4 @@
-import env from './util/env';
+import { env } from './util/env';
 
 import { createContainer } from './interface/container';
 import { Logger } from './util/logger';

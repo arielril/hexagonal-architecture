@@ -19,4 +19,4 @@ const env = {
   paymentProcessorUrl: process.env.PAYMENT_PROCESSOR_URL,
 };
 
-export default env;
+export { env };

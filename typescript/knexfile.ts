@@ -1,4 +1,4 @@
-import env from './src/util/env';
+import { env } from './src/util/env';
 import { Logger } from './src/util/logger';
 
 module.exports = {
