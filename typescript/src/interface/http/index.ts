@@ -5,13 +5,14 @@ import compression from 'compression';
 import express from 'express';
 
 import { PaymentController } from './controller/payment';
+import { UserController } from './controller/user';
+
 import { validator } from './middleware/validator';
 import { errorHandler } from './middleware/errorHandler';
 import { ExpressLogger, Logger } from '../../util/logger';
 
 import { Container } from '../../types/core';
 import { IHttpRoute, IHttpInterface } from '../../types/interface';
-import { UserController } from './controller/user';
 
 type Config = {
   env: typeof import('../../util/env').env;

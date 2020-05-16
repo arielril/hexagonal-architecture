@@ -6,6 +6,7 @@ import {
   MessageBusAdapterConfig,
   MessageBusType,
   MessageContent,
+  MessagePublishOptions,
 } from '../../types/infrastructure';
 
 /**
@@ -53,7 +54,7 @@ export class MessageBusAdapter implements IMessageBusAdapter {
     router: string,
     routingKey: string,
     content: MessageContent,
-    options?: any,
+    options?: MessagePublishOptions,
   ): Promise<boolean> {
     // convert the content to buffer
     const cBuffer = this.contentToBuffer(content);

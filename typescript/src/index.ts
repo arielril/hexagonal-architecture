@@ -11,9 +11,11 @@ type AppConfig = {
 
 export class App {
   private _http?: boolean;
+  private _amqp?: boolean;
 
-  constructor({ http }: AppConfig) {
+  constructor({ http, amqp }: AppConfig) {
     this._http = http;
+    this._amqp = amqp;
   }
 
   run() {
@@ -21,18 +23,23 @@ export class App {
       env,
       init: {
         http: this._http,
+        amqp: this._amqp,
       },
     });
 
     if (this._http) {
       interfaceContainer.httpInterface?.serve();
-      Logger.debug('http interface initialized');
+    }
+
+    if (this._amqp) {
+      interfaceContainer.amqpInterface?.connect();
     }
   }
 }
 
 const app = new App({
   http: env.httpActive,
+  amqp: env.amqpActive,
 });
 
 setImmediate(() => {

@@ -1,5 +1,5 @@
 import knex from 'knex';
-import { Channel } from 'amqplib';
+import { Channel, Options } from 'amqplib';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { IPaymentRepository } from './payment';
@@ -29,6 +29,7 @@ export interface IMysqlAdapter {
 /* Message Bus Adapter */
 export type MessageBus = Channel;
 export type MessageContent = unknown;
+export type MessagePublishOptions = Options.Publish;
 
 export interface IMessageBusAdapterConstructs {
   new(config?: MessageBusAdapterConfig): IMessageBusAdapter;
@@ -48,7 +49,7 @@ export interface IMessageBusAdapter {
     router: string,
     routingKey: string,
     content: MessageContent,
-    options?: any,
+    options?: MessagePublishOptions,
   ): Promise<boolean>;
 }
 
