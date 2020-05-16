@@ -14,7 +14,7 @@ import { IHttpRoute, IHttpInterface } from '../../types/interface';
 import { UserController } from './controller/user';
 
 type Config = {
-  env: typeof import('../../util/env').default;
+  env: typeof import('../../util/env').env;
   coreContainer: Container;
 };
 

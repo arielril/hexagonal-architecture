@@ -9,7 +9,7 @@ import {
 import { IHttpInterface, IAmqpInterface, ICliInterface } from '../types/interface';
 
 type ContainerConfig = {
-  env: typeof import('../util/env').default;
+  env: typeof import('../util/env').env;
   init: {
     http?: boolean;
     amqp?: boolean;
