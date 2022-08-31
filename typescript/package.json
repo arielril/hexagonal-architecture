@@ -36,7 +36,7 @@
     "helmet": "^3.21.3",
     "http-status-codes": "^1.4.0",
     "knex": "^0.20.11",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "mysql2": "^2.1.0",
     "ramda": "^0.26.1",
     "uuid": "^7.0.3"
