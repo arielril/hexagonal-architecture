@@ -35,7 +35,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.3",
     "http-status-codes": "^1.4.0",
-    "knex": "^0.20.11",
+    "knex": "^2.4.0",
     "moment-timezone": "^0.5.28",
     "mysql2": "^2.1.0",
     "ramda": "^0.26.1",
