@@ -65,7 +65,7 @@
     "eslint-plugin-jest": "^23.13.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^11.1.0",
-    "jest": "^24.9.0",
+    "jest": "^30.2.0",
     "jest-express": "^1.11.3",
     "nock": "^11.9.1",
     "nodemon": "^2.0.3",
