@@ -28,7 +28,7 @@
     "amqplib": "^0.7.1",
     "axios": "^0.30.2",
     "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "elastic-apm-node": "^3.5.0",
