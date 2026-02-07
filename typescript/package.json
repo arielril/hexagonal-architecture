@@ -37,7 +37,7 @@
     "http-status-codes": "^1.4.0",
     "knex": "^0.20.11",
     "moment-timezone": "^0.5.28",
-    "mysql2": "^2.1.0",
+    "mysql2": "^3.9.8",
     "ramda": "^0.26.1",
     "uuid": "^7.0.3"
   },
